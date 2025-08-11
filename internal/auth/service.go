@@ -91,3 +91,25 @@ func (s *Service) Login(ctx context.Context, in LoginInput) (*AuthToken, error) 
 	}
 	return &AuthToken{Token: signed}, nil
 }
+
+// ParseAndValidateJWT memverifikasi token HS256 dan mengembalikan userID dari claim "sub".
+func ParseAndValidateJWT(tokenString string, secret []byte) (string, error) {
+	parsed, err := jwt.Parse(tokenString, func(t *jwt.Token) (interface{}, error) {
+		if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, errors.New("invalid signing method")
+		}
+		return secret, nil
+	})
+	if err != nil {
+		return "", err
+	}
+	if !parsed.Valid {
+		return "", errors.New("invalid token")
+	}
+	if claims, ok := parsed.Claims.(jwt.MapClaims); ok {
+		if sub, ok := claims["sub"].(string); ok {
+			return sub, nil
+		}
+	}
+	return "", errors.New("invalid claims")
+}

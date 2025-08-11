@@ -6,11 +6,11 @@ services:
     container_name: workmate_postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 4g1tw0rkm4t3
+      POSTGRES_DB: workmate
     ports:
-      - "5432:5432"
+      - "5555:5555"
     volumes:
       - db_data:/var/lib/postgresql/data
     healthcheck:

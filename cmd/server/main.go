@@ -8,11 +8,22 @@ import (
 	"time"
 
 	"backend-work-mate/internal/config"
+	_ "backend-work-mate/internal/docs"
 	"backend-work-mate/internal/server"
 	"backend-work-mate/internal/storage/postgres"
 
 	"github.com/joho/godotenv"
 )
+
+// @title Workmate API
+// @version 1.0
+// @description Backend API untuk Workmate (Auth dan Task Manager)
+// @host localhost:8080
+// @BasePath /
+// @schemes http
+// @securityDefinitions.apikey BearerAuth
+// @in header
+// @name Authorization
 
 func main() {
 	_ = godotenv.Load()
