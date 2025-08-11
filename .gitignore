@@ -1,0 +1,20 @@
+# OS
+.DS_Store
+
+# Env
+.env
+
+# Go
+/bin/
+/dist/
+/build/
+/vendor/
+*.out
+*.log
+coverage.*
+
+# IDE
+.idea/
+.vscode/
+
+
